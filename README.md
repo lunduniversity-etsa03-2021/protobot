@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/lunduniversity/introsofteng-protobot.svg?branch=gradle)](https://travis-ci.com/lunduniversity/introsofteng-protobot)
 [![codecov](https://codecov.io/gh/lunduniversity-etsa03-2020/protobot/branch/master/graph/badge.svg)](https://codecov.io/gh/lunduniversity-etsa03-2020/protobot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8f1f8741303a11be1943/maintainability)](https://codeclimate.com/github/lunduniversity-etsa03-2020/protobot/maintainability)
 
 # introsofteng-protobot
 
