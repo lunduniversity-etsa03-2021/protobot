@@ -20,6 +20,6 @@ script:
  - ./gradlew jacocoTestReport
 
 after_script:
+ - ./cc-test-reporter format-coverage --add-prefix /ProtoBot
  - JACOCO_SOURCE_PATH=src/main/java ./cc-test-reporter format-coverage build/customJacocoReportDir/test/jacocoTestReport.xml --input-type jacoco
- - ./cc-test-reporter format-coverage --prefix /ProtoBot
  - ./cc-test-reporter upload-coverage 
