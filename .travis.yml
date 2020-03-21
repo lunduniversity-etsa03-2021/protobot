@@ -2,15 +2,23 @@ language: java
 jdk: 
  - openjdk8
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=1667b1ba70b1c7a22d324e2cd12305bcbf8009d54c61b0d04cb9ce4962695056
+    
 before_install:
  - cd ProtoBot
  - pwd
  - ls -la
  - chmod +x gradlew
+ - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+ - chmod +x ./cc-test-reporter
+ - ./cc-test-reporter before-build
 
 script:
  - ./gradlew build
  - ./gradlew jacocoTestReport
 
-after_success:
- - bash <(curl -s https://codecov.io/bash)
+after_script:
+ - JACOCO_SOURCE_PATH=src/main/java ./cc-test-reporter format-coverage build/customJacocoReportDir/test/jacocoTestReport.xml --input-type jacoco
+ - ./cc-test-reporter upload-coverage --add-prefix /ProtoBot
