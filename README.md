@@ -1,4 +1,4 @@
-# introsofteng-protobot
+# ProtoBot
 [![Build Status](https://travis-ci.com/lunduniversity-etsa03-2020/protobot.svg?branch=master)](https://travis-ci.com/lunduniversity-etsa03-2020/protobot)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8f1f8741303a11be1943/maintainability)](https://codeclimate.com/github/lunduniversity-etsa03-2020/protobot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8f1f8741303a11be1943/test_coverage)](https://codeclimate.com/github/lunduniversity-etsa03-2020/protobot/test_coverage)
