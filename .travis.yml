@@ -4,7 +4,7 @@ jdk:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=1667b1ba70b1c7a22d324e2cd12305bcbf8009d54c61b0d04cb9ce4962695056
+    - CC_TEST_REPORTER_ID=0436ad9c80bd586bc95a0392d2f98ed3e362db3734e0eac2fac8db4c4d5117db
     
 before_install:
  - cd ProtoBot
