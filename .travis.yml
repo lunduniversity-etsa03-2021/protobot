@@ -21,4 +21,5 @@ script:
 
 after_script:
  - JACOCO_SOURCE_PATH=src/main/java ./cc-test-reporter format-coverage build/customJacocoReportDir/test/jacocoTestReport.xml --input-type jacoco
- - ./cc-test-reporter upload-coverage --add-prefix /ProtoBot
+ - ./cc-test-reporter format-coverage --prefix /ProtoBot
+ - ./cc-test-reporter upload-coverage 
