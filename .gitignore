@@ -1,2 +1,11 @@
+/.gradle/
 
-ProtoBot/.classpath
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+bot03/.settings/
+
+bot03/.classpath
