@@ -1,8 +1,8 @@
 # ProtoBot
-[![Build Status](https://travis-ci.com/lunduniversity-etsa03-2020/protobot.svg?branch=master)](https://travis-ci.com/lunduniversity-etsa03-2020/protobot)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8f1f8741303a11be1943/maintainability)](https://codeclimate.com/github/lunduniversity-etsa03-2020/protobot/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8f1f8741303a11be1943/test_coverage)](https://codeclimate.com/github/lunduniversity-etsa03-2020/protobot/test_coverage)
-[![CodeScene Code Health](https://codescene.io/projects/7488/status-badges/code-health)](https://codescene.io/projects/7488)
+[![Build+Test](https://github.com/lunduniversity-etsa03-2021/protobot/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/lunduniversity-etsa03-2021/protobot/actions/workflows/build_and_test.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5d6ea7992d473649609f/maintainability)](https://codeclimate.com/github/lunduniversity-etsa03-2021/protobot/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5d6ea7992d473649609f/test_coverage)](https://codeclimate.com/github/lunduniversity-etsa03-2021/protobot/test_coverage)
+[![CodeScene Code Health](https://codescene.io/projects/134413/status-badges/code-health)](https://codescene.io/projects/134413)
 
 Supplementary teaching material for "Introduction to Software Engineering" at Lund University, LTH. http://cs.lth.se/etsa03/
 
