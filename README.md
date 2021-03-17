@@ -6,11 +6,11 @@
 
 Supplementary teaching material for "Introduction to Software Engineering" at Lund University, LTH. http://cs.lth.se/etsa03/
 
-This repository contains a barebone robot for the LU Rumble, used as a starting point for all student groups in the LU Rumble project 2020.
+This repository contains a barebone robot for the LU Rumble, used as a starting point for all student groups in the LU Rumble project 2021.
 
 ## License
 
-Copyright © 2020. Dept. of Computer Science at Lund University, Lund, Sweden.
+Copyright © 2020-2021. Dept. of Computer Science at Lund University, Lund, Sweden.
 
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 
