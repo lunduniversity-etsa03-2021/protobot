@@ -2,7 +2,7 @@
 [![Build+Test](https://github.com/lunduniversity-etsa03-2021/protobot/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/lunduniversity-etsa03-2021/protobot/actions/workflows/build_and_test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5d6ea7992d473649609f/maintainability)](https://codeclimate.com/github/lunduniversity-etsa03-2021/protobot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5d6ea7992d473649609f/test_coverage)](https://codeclimate.com/github/lunduniversity-etsa03-2021/protobot/test_coverage)
-[![CodeScene Code Health](https://codescene.io/projects/134413/status-badges/code-health)](https://codescene.io/projects/134413)
+[![CodeScene Code Health](https://codescene.io/projects/14082/status-badges/code-health)](https://codescene.io/projects/14082)
 
 Supplementary teaching material for "Introduction to Software Engineering" at Lund University, LTH. http://cs.lth.se/etsa03/
 
