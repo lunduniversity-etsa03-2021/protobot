@@ -26,9 +26,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import etsa03.MessageReaderTest;
+import etsa03.MessageWriterTest;
+
 @RunWith(Suite.class)
 @SuiteClasses({ MathUtilsTest.class, ModuleATest.class, 
-				ModuleBTest.class, ModuleCTest.class /* Add more unit test classes when they are ready */ })
+				ModuleBTest.class, ModuleCTest.class,
+				MessageReaderTest.class, MessageWriterTest.class /* Add more unit test classes when they are ready */ })
 public class UnitTestSuite {
 
 }
