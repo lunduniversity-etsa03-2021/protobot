@@ -1,18 +1,14 @@
 /**	
 Copyright (c) 2017 David Phung
-
 Building on work by Mathew A. Nelson and Robocode contributors.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +21,21 @@ SOFTWARE.
 package etsa03;
 
 /**
- * A class to help composing ETSA03 RoboTalk messages.
+ * A class to help composing ETSA02 RoboTalk messages.
  * @author DavidPhung
+ * @author Teodor Ahlinder, improvements for LU Rumble (2020)
  */
 public class MessageWriter {
 	
-	private String leaderShip;
+	private String leadership;
 	private String teamMode;
 	private String myPos;
-	private String friendPos;
+	private String[] friendPos;
+	private int friendPosCount;
 	private String[] enemyPos;
 	private int enemyPosCount;
+	private String[] enemyDetails;
+	private int enemyDetailsCount;
 	private String targetEnemy;
 	private String targetPos;
 	private String moveTo;
@@ -44,12 +44,15 @@ public class MessageWriter {
 	 * Construct a class to help composing a message.
 	 */
 	public MessageWriter() {
-		leaderShip = new String();
+		leadership = new String();
 		teamMode = new String();
 		myPos = new String();
-		friendPos = new String();
+		friendPos = new String[10];
+		friendPosCount = 0;
 		enemyPos = new String[10];
 		enemyPosCount = 0;
+		enemyDetails = new String[10];
+		enemyDetailsCount = 0;
 		targetEnemy = new String();
 		targetPos = new String();
 		moveTo = new String();
@@ -60,7 +63,7 @@ public class MessageWriter {
 	 * @param command
 	 */
 	public void addLeadership(String command) {
-		leaderShip = "leaderShip;" + command;
+		leadership = "leadership;" + command;
 	}
 	
 	/**
@@ -81,12 +84,13 @@ public class MessageWriter {
 	}
 	
 	/**
-	 * Add the friendPos line.
+	 * Add the friendPos line. Note: we can have multiple lines of this (at most 10).
 	 * @param x
 	 * @param y
 	 */
-	public void addFriendPos(double x, double y) {
-		friendPos = "friendPos;" + x + ";" + y; 
+	public void addFriendPos(String name, double x, double y) {
+		friendPos[friendPosCount] = "friendPos;" + name + ";" + x + ";" + y;
+		friendPosCount++;
 	}
 	
 	/**
@@ -94,9 +98,17 @@ public class MessageWriter {
 	 * @param x
 	 * @param y
 	 */
-	public void addEnemyPos(double x, double y) {
-		enemyPos[enemyPosCount] = "enemyPos;" + x + ";" + y;
+	public void addEnemyPos(String name, double x, double y) {
+		enemyPos[enemyPosCount] = "enemyPos;" + name + ";" + x + ";" + y;
 		enemyPosCount++;
+	}
+	
+	/**
+	 * Add an enemyPos line. Note: we can have multiple lines of this (at most 10).
+	 */
+	public void addEnemyDetails(String name, double x, double y, double velocity, double energy, double heading, double gunHeading) {
+		enemyDetails[enemyDetailsCount] = "enemyDetails;" + name + ";" + x + ";" + y + ";" + velocity + ";" + energy + ";" + heading + ";" + gunHeading;
+		enemyDetailsCount++;
 	}
 	
 	/**
@@ -132,12 +144,17 @@ public class MessageWriter {
 	 */
 	public String composeMessage() {
 		StringBuilder sb = new StringBuilder();
-		addLine(sb, leaderShip);
+		addLine(sb, leadership);
 		addLine(sb, teamMode);
 		addLine(sb, myPos);
-		addLine(sb, friendPos);
+		for (int i = 0; i < friendPosCount; i++) {
+			addLine(sb, friendPos[i]);
+		}
 		for (int i = 0; i < enemyPosCount; i++) {
 			addLine(sb, enemyPos[i]);
+		}
+		for (int i = 0; i < enemyDetailsCount; i++) {
+			addLine(sb, enemyDetails[i]);
 		}
 		addLine(sb, targetEnemy);
 		addLine(sb, targetPos);

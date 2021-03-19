@@ -1,18 +1,14 @@
 /**	
 Copyright (c) 2017 David Phung
-
 Building on work by Mathew A. Nelson and Robocode contributors.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,8 +23,9 @@ package etsa03;
 import java.awt.geom.Point2D;
 
 /**
- * A class to help parsing ETSA03 RoboTalk messages.
+ * A class to help with the reading of messages.
  * @author DavidPhung
+ * @author Teodor Ahlinder, improvements for LU Rumble (2020)
  */
 public class MessageReader {
 	
@@ -46,11 +43,9 @@ public class MessageReader {
 	 * Returns the value of the leadership line if the message contains it. Otherwise returns empty string.
 	 * @return value of leadership line or empty string if the line is not included in the message.
 	 */
-	public String getLeaderShip() {
-		String[] values = getValues("leaderShip");
-		if (values.length > 0) {
-			return values[0];
-		}
+	public String getLeadership() {
+		String[] values = getValues("leadership");
+		if (values.length > 0) return values[0];
 		return "";
 	}
 	/**
@@ -59,9 +54,7 @@ public class MessageReader {
 	 */
 	public String getTeamMode() {
 		String[] values = getValues("teamMode");
-		if (values.length > 0) {
-			return values[0];
-		}
+		if (values.length > 0) return values[0];
 		return "";
 	}
 	
@@ -72,20 +65,19 @@ public class MessageReader {
 	public Point2D.Double getMyPos() {
 		String[] values = getValues("myPos");
 		if (values.length > 0) {
-			return parsePoint(values[0]);
+			String[] data = values[0].split(";");
+			return new Point2D.Double(Double.parseDouble(data[0]), Double.parseDouble(data[1]));
 		}
 		return null;
 	}
 	
 	/**
-	 * Returns the value of the friendPos line if the message contains it. Otherwise returns null.
+	 * Returns the value of the friendPos line if the message contains it. Otherwise returns an empty array.
 	 * @return a point created from the (x,y) values in the friendPos line or null if the line is not included in the message or parsing fails.
 	 */
-	public Point2D.Double getFriendPos() {
+	public String[] getFriendPos() {
 		String[] values = getValues("friendPos");
-		if (values.length > 0) {
-			return parsePoint(values[0]);
-		}
+		if (values.length > 0) return values;
 		return null;
 	}
 	
@@ -93,13 +85,19 @@ public class MessageReader {
 	 * Returns the values of the enemyPos lines if the message contains any. Otherwise returns an empty array.
 	 * @return an array of points created from (x,y) values in the enemyPos lines or an empty array if no enemyPos line is included in the message.
 	 */
-	public Point2D.Double[] getEnemyPos() {
+	public String[] getEnemyPos() {
 		String[] values = getValues("enemyPos");
-		Point2D.Double[] p = new Point2D.Double[values.length];
-		for (int i = 0; i < values.length; i++) {
-			p[i] = parsePoint(values[i]);
-		}
-		return p;
+		if (values.length > 0) return values;
+		return null;
+	}
+	
+	/**
+	 * Returns the values of the enemyDetails lines if the message contains any. Otherwise returns an empty array.
+	 * @return an array of strings created from values in the enemyPos lines or an empty array if no enemyPos line is included in the message.
+	 */
+	public String[] getEnemyDetails() {
+		String[] values = getValues("enemyDetails");
+		return values;
 	}
 	
 	/**
@@ -108,9 +106,7 @@ public class MessageReader {
 	 */
 	public String getTargetEnemy() {
 		String[] values = getValues("targetEnemy");
-		if (values.length > 0) {
-			return values[0];
-		}
+		if (values.length > 0) return values[0];
 		return "";
 	}
 	
@@ -121,7 +117,8 @@ public class MessageReader {
 	public Point2D.Double getTargetPos() {
 		String[] values = getValues("targetPos");
 		if (values.length > 0) {
-			return parsePoint(values[0]);
+			String[] data = values[0].split(";");
+			return new Point2D.Double(Double.parseDouble(data[0]), Double.parseDouble(data[1]));
 		}
 		return null;
 	}
@@ -133,25 +130,10 @@ public class MessageReader {
 	public Point2D.Double getMoveTo() {
 		String[] values = getValues("moveTo");
 		if (values.length > 0) {
-			return parsePoint(values[0]);
+			String[] data = values[0].split(";");
+			return new Point2D.Double(Double.parseDouble(data[0]), Double.parseDouble(data[1]));
 		}
 		return null;
-	}
-	
-	/**
-	 * Create a point from a string of form "x;y"
-	 * @param s input string, should follow the form "x;y"
-	 * @return The point (x,y) or null if parsing fails.
-	 */
-	private Point2D.Double parsePoint(String s) {
-		Point2D.Double p = null;
-		String[] ss = s.split(";");
-		try {
-			double x = Double.parseDouble(ss[0]);
-			double y = Double.parseDouble(ss[1]);
-			p = new Point2D.Double(x,y);
-		} catch (RuntimeException e) {}
-		return p;
 	}
 	
 	/**
