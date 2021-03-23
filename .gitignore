@@ -6,6 +6,6 @@
 # Ignore Gradle build output directory
 build
 
-bot03/.settings/
+ProtoBot/.settings/
 
-bot03/.classpath
+ProtoBot/.classpath
