@@ -169,6 +169,9 @@ public class MessageWriter {
 			addLine(sb, enemyDetails[i]);
 		}
 		addLine(sb, targetEnemy);
+		for (int i = 0; i < bulletDetailsCount; i++) {
+			addLine(sb, bulletDetails[i]);
+		}
 		addLine(sb, targetPos);
 		addLine(sb, moveTo);
 		
