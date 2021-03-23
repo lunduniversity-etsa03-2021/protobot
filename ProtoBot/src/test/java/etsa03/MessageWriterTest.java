@@ -171,6 +171,35 @@ public class MessageWriterTest {
 	}
 	
 	@Test
+	public void testOneBulletDetails() {
+		double x = 25.2;
+		double y = 0.0;
+		double absBearing = 90.0;
+		double bulletPower = 0.8;
+		String message = "bulletDetails;" + x + ";" + y + ";" + absBearing + ";" + bulletPower;
+		writer.addBulletDetails(x, y, absBearing, bulletPower);
+		String check = writer.composeMessage();
+		assertTrue("Check that sent string is identical to received string", message.compareTo(check) == 0); 
+	}
+	
+	@Test
+	public void testTwoBulletDetails() {
+		double x1 = 25.2;
+		double y1 = 0.0;
+		double absBearing1 = 90.0;
+		double bulletPower1 = 0.8;
+		double x2 = 14.0;
+		double y2 = 80.5;
+		double absBearing2 = 12.0;
+		double bulletPower2 = 0.2;
+		String message = "bulletDetails;" + x1 + ";" + y1 + ";" + absBearing1 + ";" + bulletPower1 + "\n" + "bulletDetails;" + x2 + ";" + y2 + ";" + absBearing2 + ";" + bulletPower2;
+		writer.addBulletDetails(x1, y1, absBearing1, bulletPower1);
+		writer.addBulletDetails(x2, y2, absBearing2, bulletPower2);
+		String check = writer.composeMessage();
+		assertTrue("Check that sent string is identical to received string", message.compareTo(check) == 0); 
+	}
+	
+	@Test
 	public void testTargetPos() {
 		double x = 25.2;
 		double y = 0.0;
