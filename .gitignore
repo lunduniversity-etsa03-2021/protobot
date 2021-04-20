@@ -9,3 +9,4 @@ build
 ProtoBot/.settings/
 
 ProtoBot/.classpath
+*.DS_Store
